@@ -35,7 +35,7 @@ public class IsEqualString {
     @Test
     void function_4() {
         String str_1 = "naveen";
-        String str_2 = "naveen";
+        String str_2 = "naven";
         assertEquals(true, ch._checkString(str_1, str_2));
     }
 
