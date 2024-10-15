@@ -28,6 +28,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>5.9.0</version> <!-- Check for the latest version -->
+                <scope>test</scope>
+            </dependency>
+
         <!-- Spring Data JPA for database interaction -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,6 +61,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        
 
         <!-- Thymeleaf for templating -->
         <dependency>
