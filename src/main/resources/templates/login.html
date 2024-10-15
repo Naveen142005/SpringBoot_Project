@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <title>Form with hover</title>
+    <style>
+        body
+{
+    background-color:rgba(0,0,0,500);  
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.all
+{
+    margin: 150px auto;
+    border: 3px solid gray;
+    width: 350px; 
+    border-radius: 10px;
+}
+h1
+{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-top: 6px;
+    padding-bottom: 40px;
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida       Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:white;
+}
+p
+{
+    padding-top: 25px;
+    margin-right: 140px;
+    font-size: 12pt;
+    position: relative;
+    left: 15px;
+    bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+p a
+{
+    text-decoration: none;
+    font: 500;
+    color: whitesmoke;
+}
+button
+{
+    position: relative;
+    bottom: 23px;
+    right:12px;
+    margin: 20px;
+    width: 300px;
+    border: 2px solid gray;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 12pt;
+    margin-bottom:2px ;
+    color: whitesmoke;
+    background-color: gray;
+    letter-spacing: 1px; 
+}
+#font
+{
+    font-size: 14pt;
+    font-weight: 600;
+}
+:placeholder-shown
+{
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px;
+    font-size: 12pt;
+    cursor: pointer;
+  
+}
+
+.i
+{
+    border: 1px solid gray;
+    width: 250px;
+    background-color: black;
+    padding: 0 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+    border: 2px solid gray;
+    margin-right: 19px;
+    color: white;
+    font-size: 13pt;
+    text-indent:6px;
+}
+.total
+{
+    margin-bottom: 16px;
+}
+input:focus
+{
+text-indent:6px;
+    outline: none;
+    color: white;
+}
+#T
+{
+    position: relative;
+    bottom: 15px;
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 25px;
+}
+.final
+{
+    text-decoration: none;
+    color: gray;
+}
+
+
+                                        /* HOVER EFECTS*/                                   
+
+
+.all:hover h1
+{
+   color: #0ef;
+   text-shadow: 0 0 10px rgb(44, 182, 216);
+   letter-spacing: 3px;
+} 
+.all:hover input
+{
+    border:2px solid aqua;
+    box-shadow: 0 0 10px #0ef, inset 0 0 10px aqua;  
+}
+.all:hover button
+{
+    border:2px solid aqua;
+    box-shadow: 0 0 10px #0ef,inset 0 0 10px #0ef;
+    color: black;
+    background-color: #0ef;
+}
+.all:hover
+{
+    border:3px solid #0ef;
+    box-shadow: 0 0 50px #0ef,inset 0 0 10px #0ef;
+}
+.all:hover .final
+{
+    color: #0ef;
+    text-shadow: 0 0 10px aqua;
+}
+.icon
+{
+    position: relative;
+    left:28px;
+    color: gray;
+}
+.all:hover .icon
+{
+    color: #0ef;
+}
+
+.all:hover #last
+{
+    letter-spacing: 2px;
+    font-size: 13pt;
+}
+.all,h1,button,.icon,.final,.i,#T
+{
+    transition: 1s;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="all">
+        <center>
+            <h1>Login</h1>
+            <form th:action = "@{/user}"  name="form" method="post">
+                <div class="total">
+                    <span class="icon">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+                    <input name="userId" type="text" class="i" placeholder="&nbsp;UserID" required id="userId">
+
+                </div>
+                <div>
+                    <span class="icon"> 
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                    <input name="userPassword" type="password" class="i" placeholder="&nbsp;Password" required id="userPass">
+                </div>
+                <p>
+                    <a href="#" class="link">Forget password?</a>
+                <p>
+                <button onclick="fun(event)"> <span id="font">Login</span></button>
+                <div id="T">
+                    Don't have account?<span id="last"><a href="#" class="final"> Register</a></span>
+                </div>
+            </form>
+        </center>
+    </div>
+    
+    <script>
+        function fun(event) {
+            const userId =Number((document.getElementById('userId')).value);
+            const userPassword = document.getElementById('userPass').value;
+        
+        console.log(userPassword)
+        console.log(userId);
+            event.preventDefault(); 
+
+            const userLogin = {userId,userPassword};
+            console.log(typeof(userLogin))
+
+            const res = fetch("http://localhost:8080/user", {
+                method : 'POST',
+                headers :{
+                    "content-type" : "application/json"
+                },
+                body:JSON.stringify(userLogin)
+            })
+
+            res.then(response => response.json())
+            .then(isture => {
+                if (isture){
+                    alert("Success Fully Login")
+                }
+                else {
+                    alert("Login failed successFully");
+                }
+            })
+            .catch(err => console.log(err))
+        }
+        
+    </script>
+    
+</body>
+</html>
