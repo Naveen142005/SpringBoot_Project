@@ -23,9 +23,10 @@ public class ThankController {
    
     @PostMapping("/user")
      public Boolean Thank(@RequestBody userLogin usl){
-
-        // System.out.println("User ID: " + usl.getUserId());
-        // System.out.println("Password: " + usl.getUserPassword());
+        
+        {
+        System.out.println("User ID: " + usl.getUserId());
+        System.out.println("Password: " + usl.getUserPassword());
 
         // userLogin user = new userLogin();
         // user.setUserId(usl.getUserId());
@@ -45,6 +46,7 @@ public class ThankController {
        
         // System.out.println("User ID: " + user.getUserId());
         // System.out.println("Password: " + user.getUserPassword());
+        }
 
         try{
             repo.save(usl);
